@@ -62,9 +62,9 @@ playlist_white=DayPlaylist
 playlist_black=NightPlaylist
 wallpaper_path=C:\Program Files (x86)\Steam\steamapps\common\wallpaper_engine\wallpaper64.exe
 autorun=true
-autorun_set=true
+```
 
-## 配置项详解
+### 配置项详解
 
 以下内容详细说明 `%AppData%\SunThemeSwitcher\config.ini` 中各个配置项的含义、取值要求及程序行为。
 
