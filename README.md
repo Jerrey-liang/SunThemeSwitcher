@@ -86,7 +86,7 @@ autorun=true
 
 ```ini
 playlist_white=DayPlaylist
-
+```
 ### playlist_black
 
 - **类型**：字符串  
@@ -104,7 +104,7 @@ playlist_white=DayPlaylist
 
 ```ini
 playlist_black=NightPlaylist
-
+```
 ### wallpaper_path
 
 - **类型**：字符串（可执行文件完整路径）  
@@ -122,7 +122,7 @@ playlist_black=NightPlaylist
 
 ```ini
 wallpaper_path=C:\Program Files (x86)\Steam\steamapps\common\wallpaper_engine\wallpaper64.exe
-
+```
 ### autorun
 
 - **类型**：布尔值（true / false）  
@@ -142,7 +142,7 @@ wallpaper_path=C:\Program Files (x86)\Steam\steamapps\common\wallpaper_engine\wa
 
 ```ini
 autorun=true
-
+```
 
 ## 配置完整性判定
 
@@ -174,6 +174,7 @@ autorun=true
 
 ```ini
 uninstall
+```
 并运行程序一次，程序将进入自卸载流程。
 
 ### 卸载行为说明
@@ -182,6 +183,7 @@ uninstall
 
 ```ini
 uninstall
+```
 并运行程序一次，程序将进入自卸载流程。
 
 ---
