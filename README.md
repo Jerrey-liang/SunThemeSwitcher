@@ -125,8 +125,8 @@ wallpaper_path=C:\Program Files (x86)\Steam\steamapps\common\wallpaper_engine\wa
 ```
 ### autorun
 
-- **类型**：布尔值（true / false）  
-- **必填**：否  
+- **类型**：布尔值（1 / 0）  
+- **必填**：是  
 
 - **含义**：  
   控制程序是否在 Windows 启动时自动运行。
@@ -135,13 +135,13 @@ wallpaper_path=C:\Program Files (x86)\Steam\steamapps\common\wallpaper_engine\wa
 
 | 值 | 行为 |
 |----|------|
-| true | 程序将被加入开机自启动 |
-| false | 程序不会随系统启动 |
+| 1 | 程序将被加入开机自启动 |
+| 0 | 程序不会随系统启动 |
 
 - **示例**：
 
 ```ini
-autorun=true
+autorun=1
 ```
 
 ## 配置完整性判定
