@@ -204,4 +204,37 @@ namespace LocalSun {
 
         return SunEvent::None;
     }
+
+    LocalSun::ThemeNow LocalSun::GetExpectedThemeNow()
+    {
+        SunEvent ev = checkSunEventNow();
+
+        // 启动瞬间强制对齐
+        if (ev == SunEvent::Sunset)
+            return ThemeNow::Dark;
+
+        if (ev == SunEvent::Sunrise)
+            return ThemeNow::Light;
+
+        /*
+            None 的含义：
+            - 没有事件发生
+            - 启动时 Wallpaper Engine 状态不可信
+            - 工程上：默认“夜间优先”更安全
+        */
+
+        SYSTEMTIME st;
+        GetLocalTime(&st);
+        int currentsecond = st.wHour * 3600 + st.wMinute * 60 + st.wSecond;
+
+        SunTime suntime = getLocalSunriseSunset();
+        int targetSunriseSecond = timeToSeconds(suntime.sunrise);
+        int targetSunsetSecond = timeToSeconds(suntime.sunset);
+
+        if (currentsecond >= targetSunsetSecond || currentsecond < targetSunriseSecond)
+            return ThemeNow::Dark;
+
+        return ThemeNow::Light;
+    }
+
 }

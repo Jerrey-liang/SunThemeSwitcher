@@ -39,4 +39,11 @@ namespace LocalSun {
     // toleranceSeconds：允许的时间误差（秒）
     SunEvent checkSunEventNow(int toleranceSeconds = 60);
 
+    enum class ThemeNow
+    {
+        Light,
+        Dark
+    };
+
+    ThemeNow GetExpectedThemeNow();
 }

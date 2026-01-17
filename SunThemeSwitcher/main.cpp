@@ -18,10 +18,14 @@ void DebugPrint(const std::string& s)
 
 int main()
 {
+    AppConfig cfg;
+    bool loaded = LoadConfig(cfg);
+
     // ===== 防止多实例 =====
     HANDLE hMutex = CreateMutexA(nullptr, TRUE, "Global\\SunThemeSwitcherMutex");
     if (!hMutex || GetLastError() == ERROR_ALREADY_EXISTS)
     {
+        EnsureAutoRun(cfg.autoRunEnabled);
         MessageBoxA(
             nullptr,
             "SunThemeSwitcher is already running.\nOnly one instance can run at a time.",
@@ -40,9 +44,6 @@ int main()
         CloseHandle(hMutex);
         return 0;
     }
-
-    AppConfig cfg;
-    bool loaded = LoadConfig(cfg);
 
     // ===== 自动修复 Wallpaper Engine 路径 =====
     if (loaded && cfg.wallpaperPath.empty())
@@ -96,6 +97,16 @@ int main()
     }
 
     DebugPrint("SunThemeSwitcher started.");
+
+    // ===== 启动自检 =====
+    EnsureAutoRun(cfg.autoRunEnabled);
+    auto theme = LocalSun::GetExpectedThemeNow();
+
+    if (theme == LocalSun::ThemeNow::Light)
+        SwitchTheme(false, cfg.playlistWhite);
+    else
+        SwitchTheme(true, cfg.playlistBlack);
+
 
     // ===== 主循环（事件去抖）=====
     LocalSun::SunEvent lastEvent = LocalSun::SunEvent::None;
